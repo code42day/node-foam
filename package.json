@@ -19,13 +19,13 @@
   "dependencies": {
     "hyperquest": "~1.3.0",
     "stream-ext": "~0.0.1",
-    "simple-xml": "~0.0.10"
+    "xml2js": "^0.4.17"
   },
   "devDependencies": {
-    "mocha": "~1.18.2",
     "chai": "~1.9.1",
+    "mocha": "~1.18.2",
+    "replay": "git://github.com/AirAsiaExpedia/node-replay.git",
     "sinon": "~1.12.0",
-    "sinon-chai": "~2.6.0",
-    "replay": "git://github.com/AirAsiaExpedia/node-replay.git"
+    "sinon-chai": "~2.6.0"
   }
 }

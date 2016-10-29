@@ -1,5 +1,5 @@
 var hyperquest = require('hyperquest')
-  , XML = require('simple-xml')
+  , XML = require('./lib/xml')
   , StringStream = require('stream-ext').StringStream
   , zlib = require('zlib')
   ;
@@ -16,13 +16,10 @@ module.exports = function soap (uri, operation, action, message, options, callba
   stream.on('error', callback);
   stream.on('end', function (data) {
     if (options.benchmark) console.timeEnd('soap request: ' + uri);
-    try {
-      var obj = XML.parse(data)['Envelope']['Body'];
-      callback(null, obj);
-    }
-    catch (err) {
-      callback(err);
-    }
+    XML.parse(data, function(err, obj) {
+      if (err) callback(err);
+      callback(null, obj['Envelope']['Body']);
+    });
   });
 
   var req = hyperquest.post(uri, {
@@ -68,7 +65,7 @@ function headers (schema, length) {
     'Content-Length': length,
     'Accept-Encoding': 'gzip',
     Accept: '*/*'
-  }
+  };
 }
 
 function namespaces (ns) {

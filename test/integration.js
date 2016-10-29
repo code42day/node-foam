@@ -1,4 +1,4 @@
-describe('integration tests', function(){
+describe.skip('integration tests', function(){
   describe('foam', function () {
     var foam = require('../foam');
 
