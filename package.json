@@ -22,10 +22,10 @@
     "xml2js": "^0.4.17"
   },
   "devDependencies": {
-    "chai": "~1.9.1",
-    "mocha": "~1.18.2",
+    "chai": "^1.9.1",
+    "mocha": "~3",
     "replay": "git://github.com/AirAsiaExpedia/node-replay.git",
-    "sinon": "~1.12.0",
-    "sinon-chai": "~2.6.0"
+    "sinon": "^1.12.0",
+    "sinon-chai": "^2.6.0"
   }
 }
