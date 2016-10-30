@@ -1,6 +1,6 @@
 {
   "name": "code42day-foam",
-  "version": "0.3.0",
+  "version": "1.0.0",
   "description": "A simple soap client",
   "main": "foam.js",
   "scripts": {
