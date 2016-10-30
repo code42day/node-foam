@@ -1,16 +1,38 @@
-describe.skip('integration tests', function(){
+describe('integration tests', function(){
   describe('foam', function () {
     var foam = require('../foam');
 
-    it('returns the converted temperature', function (done){
-      var operation = 'CelsiusToFahrenheit'
-        , namespace = 'http://www.w3schools.com/webservices/'
-        , action = "http://www.w3schools.com/webservices/CelsiusToFahrenheit"
-        , message = {'Celsius': '23'};
+    // http://www.dataaccess.com/webservicesserver/numberconversion.wso?WSDL
 
-      foam(namespace + 'tempconvert.asmx', operation, action, message, {namespace: namespace}, function (err, result) {
+    it('converts numbers', function (done){
+      var operation = 'NumberToWords'
+        , namespace = 'http://www.dataaccess.com/webservicesserver/'
+        , action = "http://www.dataaccess.com/webservicesserver/NumberToWords"
+        , message = {'ubiNum': 1745};
+
+      foam(namespace + 'numberconversion.wso', operation, action, message, {namespace: namespace}, function (err, result) {
         if (err) return done(err);
-        result.CelsiusToFahrenheitResponse.CelsiusToFahrenheitResult.should.equal('73.4');
+        result.should.have.deep.property('NumberToWordsResponse.NumberToWordsResult', 'one thousand seven hundred and forty five ');
+        done();
+      });
+    });
+
+    // http://services.aonaware.com/DictService/DictService.asmx?WSDL
+
+    it('define word', function (done){
+      var operation = 'aon:Define'
+        , action = "http://services.aonaware.com/webservices/Define"
+        , message = {'aon:word': 'soap'};
+
+      foam('http://services.aonaware.com/DictService/DictService.asmx', operation, action, message, {
+        namespaces: {
+          'xmlns:aon': 'http://services.aonaware.com/webservices/'
+        }
+      },
+      function (err, result) {
+        if (err) return done(err);
+        result.should.have.deep.property('DefineResponse.DefineResult.Word', 'soap');
+        result.should.have.deep.property('DefineResponse.DefineResult.Definitions');
         done();
       });
     });

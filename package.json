@@ -24,7 +24,7 @@
   "devDependencies": {
     "chai": "^1.9.1",
     "mocha": "~3",
-    "replay": "git://github.com/AirAsiaExpedia/node-replay.git",
+    "replay": "~2",
     "sinon": "^1.12.0",
     "sinon-chai": "^2.6.0"
   }

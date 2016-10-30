@@ -1,0 +1,28 @@
+POST /webservicesserver/numberconversion.wso
+soapaction: http://www.dataaccess.com/webservicesserver/NumberToWords
+content-type: text/xml;charset=UTF-8
+accept-encoding: gzip
+accept: */*
+body: <?xml version=\"1.0\" encoding=\"UTF-8\"?><env:Envelope xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:env=\"http://schemas.xmlsoap.org/soap/envelope/\" ><env:Body><NumberToWords xmlns=\"http://www.dataaccess.com/webservicesserver/\"><ubiNum>1745</ubiNum></NumberToWords></env:Body></env:Envelope>
+
+HTTP/1.1 200 OK
+cache-control: private, max-age=0
+content-length: 374
+content-type: text/xml; charset=utf-8
+server: Microsoft-IIS/8.0
+web-service: DataFlex 18.1
+access-control-allow-origin: http://www.dataaccess.com
+access-control-allow-methods: GET, POST
+access-control-allow-headers: content-type
+access-control-allow-credentials: true
+date: Sun, 30 Oct 2016 03:06:36 GMT
+connection: close
+
+<?xml version="1.0" encoding="utf-8"?>
+<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+  <soap:Body>
+    <m:NumberToWordsResponse xmlns:m="http://www.dataaccess.com/webservicesserver/">
+      <m:NumberToWordsResult>one thousand seven hundred and forty five </m:NumberToWordsResult>
+    </m:NumberToWordsResponse>
+  </soap:Body>
+</soap:Envelope>
