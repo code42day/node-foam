@@ -1,7 +1,5 @@
-var hyperquest = require('hyperquest')
+var superagent = require('superagent')
   , XML = require('./lib/xml')
-  , StringStream = require('stream-ext').StringStream
-  , zlib = require('zlib')
   ;
 
 module.exports = function soap (uri, operation, action, message, options, callback) {
@@ -12,29 +10,18 @@ module.exports = function soap (uri, operation, action, message, options, callba
   var xml = envelope(operation, message, options);
   if (options.benchmark) console.time('soap request: ' + uri);
 
-  var stream = new StringStream();
-  stream.on('error', callback);
-  stream.on('end', function (data) {
-    if (options.benchmark) console.timeEnd('soap request: ' + uri);
-    XML.parse(data, function(err, obj) {
-      if (err) callback(err);
-      callback(null, obj['Envelope']['Body']);
+  superagent
+    .post(uri)
+    .send(xml)
+    .set(headers(action, xml.length))
+    .buffer(true)
+    .end(function(err, res) {
+      if (err) return callback(err);
+      XML.parse(res.text, function(err, obj) {
+        if (err) return callback(err);
+        callback(null, obj['Envelope']['Body']);
+      });
     });
-  });
-
-  var req = hyperquest.post(uri, {
-    headers: headers(action, xml.length),
-    rejectUnauthorized: options.rejectUnauthorized,
-    secureProtocol: options.secureProtocol
-  });
-  req.on('error', callback);
-  req.on('response', function (res) {
-    if (isGzipped(res))
-      res.pipe(gunzip(callback)).pipe(stream);
-    else
-      res.pipe(stream);
-  });
-  req.end(xml);
 };
 
 function envelope (operation, message, options) {
@@ -78,14 +65,4 @@ function namespaces (ns) {
 
 function serializeOperation (operation, options) {
   return '<' + operation + (options.namespace ? ' xmlns="' + options.namespace + '"' : '') + '>';
-}
-
-function gunzip (callback) {
-  var gunzip = zlib.createGunzip();
-  gunzip.on('error', callback);
-  return gunzip;
-}
-
-function isGzipped(response) {
-  return /gzip/.test(response.headers['content-encoding']);
 }

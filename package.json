@@ -17,8 +17,7 @@
   "author": "Jerome Touffe-Blin <jtblin@gmail.com>",
   "license": "BSD-2-Clause",
   "dependencies": {
-    "hyperquest": "~1.3.0",
-    "stream-ext": "~0.0.1",
+    "superagent": "~2",
     "xml2js": "^0.4.17"
   },
   "devDependencies": {
