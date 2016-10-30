@@ -1,16 +1,11 @@
-# foam
+# code42day-foam
 
-Simple SOAP client for NodeJS.
-This module was created because none of the existing SOAP modules (most modules depend of https://www.npmjs.org/package/soap)
-would work with a third-party partner WSDL. As SOAP is just a POST request over HTTP, **foam** bypasses the WSDL
-discovery and just posts the data to the endpoint (which anyhow performs better than using the WSDL).
-
-**foam** process the message and serialize it in a SOAP envelope and body, and parse the XML response into
-a Javascript object.
+Fork of the [foam] library without native dependency.
+It is using [superagent] for requests and [xml2js] for XML stringifying and parsing.
 
 ## Usage
 
-    npm install foam --save
+    npm install code42day-foam --save
 
 ```js
 var operation = 'CelsiusToFahrenheit'
@@ -20,7 +15,7 @@ var operation = 'CelsiusToFahrenheit'
     , uri = namespace + 'tempconvert.asmx'
     ;
 
-var foam = require('foam');
+var foam = require('code42day-foam');
 
 foam(uri, operation, action, message, {namespace: namespace},
   function (err, result) {
@@ -43,5 +38,7 @@ foam(uri, operation, action, message, {namespace: namespace},
 - `namespace` - optional xmlns namespace for the `operation`
 - `namespaces` - optional additional namespaces for the `Envelope` element
 - `benchmark` - set to true to log the request timing to the console, defaults **false**
-- `rejectUnauthorized` - set to false to accept invalid certificates
-- `secureProtocol` - set to specific ssl protocol e.g. `SSLv3_method`
+
+[foam]: https://www.npmjs.com/package/foam
+[superagent]: https://www.npmjs.com/package/superagent
+[xml2js]: https://www.npmjs.com/package/xml2js
