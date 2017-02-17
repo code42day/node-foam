@@ -1,6 +1,6 @@
 {
   "name": "@pirxpilot/node-foam",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A simple soap client",
   "main": "foam.js",
   "scripts": {
