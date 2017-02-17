@@ -1,11 +1,11 @@
-# code42day-foam
+# node-foam
 
 Fork of the [foam] library without native dependency.
 It is using [superagent] for requests and [xml2js] for XML stringifying and parsing.
 
 ## Usage
 
-    npm install code42day-foam --save
+    npm install @pirxpilot/node-foam --save
 
 ```js
 var operation = 'CelsiusToFahrenheit'
@@ -15,7 +15,7 @@ var operation = 'CelsiusToFahrenheit'
     , uri = namespace + 'tempconvert.asmx'
     ;
 
-var foam = require('code42day-foam');
+var foam = require('@pirxpilot/node-foam');
 
 foam(uri, operation, action, message, {namespace: namespace},
   function (err, result) {

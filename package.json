@@ -1,5 +1,5 @@
 {
-  "name": "code42day-foam",
+  "name": "@pirxpilot/node-foam",
   "version": "1.0.0",
   "description": "A simple soap client",
   "main": "foam.js",
@@ -12,7 +12,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/code42day/node-foam"
+    "url": "https://github.com/pirxpilot/node-foam"
   },
   "author": "Jerome Touffe-Blin <jtblin@gmail.com>",
   "license": "BSD-2-Clause",
