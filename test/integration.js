@@ -12,7 +12,7 @@ describe('integration tests', function(){
 
       foam(namespace + 'numberconversion.wso', operation, action, message, {namespace: namespace}, function (err, result) {
         if (err) return done(err);
-        result.should.have.deep.property('NumberToWordsResponse.NumberToWordsResult', 'one thousand seven hundred and forty five ');
+        result.should.have.nested.property('NumberToWordsResponse.NumberToWordsResult', 'one thousand seven hundred and forty five ');
         done();
       });
     });
@@ -31,8 +31,8 @@ describe('integration tests', function(){
       },
       function (err, result) {
         if (err) return done(err);
-        result.should.have.deep.property('DefineResponse.DefineResult.Word', 'soap');
-        result.should.have.deep.property('DefineResponse.DefineResult.Definitions');
+        result.should.have.nested.property('DefineResponse.DefineResult.Word', 'soap');
+        result.should.have.nested.property('DefineResponse.DefineResult.Definitions');
         done();
       });
     });

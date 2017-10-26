@@ -21,7 +21,7 @@
     "xml2js": "^0.4.17"
   },
   "devDependencies": {
-    "chai": "^1.9.1",
+    "chai": "~4",
     "mocha": "~4",
     "replay": "~2"
   },
