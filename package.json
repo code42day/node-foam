@@ -4,7 +4,7 @@
   "description": "A simple soap client",
   "main": "foam.js",
   "scripts": {
-    "test": "NODE_ENV=test mocha -w test/"
+    "test": "NODE_ENV=test make"
   },
   "keywords": [
     "soap",
