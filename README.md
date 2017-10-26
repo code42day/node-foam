@@ -1,3 +1,7 @@
+[![NPM version][npm-image]][npm-url]
+[![Build Status][travis-image]][travis-url]
+[![Dependency Status][gemnasium-image]][gemnasium-url]
+
 # node-foam
 
 Fork of the [foam] library without native dependency.
@@ -42,3 +46,12 @@ foam(uri, operation, action, message, {namespace: namespace},
 [foam]: https://www.npmjs.com/package/foam
 [superagent]: https://www.npmjs.com/package/superagent
 [xml2js]: https://www.npmjs.com/package/xml2js
+
+[npm-image]: https://img.shields.io/npm/v/@pirxpilot/node-foam.svg
+[npm-url]: https://npmjs.org/package/@pirxpilot/node-foam
+
+[travis-url]: https://travis-ci.org/pirxpilot/node-foam
+[travis-image]: https://img.shields.io/travis/pirxpilot/node-foam.svg
+
+[gemnasium-image]: https://img.shields.io/gemnasium/pirxpilot/node-foam.svg
+[gemnasium-url]: https://gemnasium.com/pirxpilot/node-foam
