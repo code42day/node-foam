@@ -1,4 +1,11 @@
 
+1.0.2 / 2017-10-26
+==================
+
+ * upgrade superagent to ~3
+ * upgrade chai to ~4
+ * upgrade mocha to ~4
+
 1.0.1 / 2017-02-16
 ==================
 
