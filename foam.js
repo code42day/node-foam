@@ -1,4 +1,5 @@
-var superagent = require('superagent')
+var getlet = require('getlet')
+  , concat = require('concat-stream')
   , XML = require('./lib/xml')
   ;
 
@@ -7,20 +8,25 @@ module.exports = function soap (uri, operation, action, message, options, callba
     callback = options;
     options = {};
   }
+  var networkError;
   var xml = envelope(operation, message, options);
+  var out = concat({ encoding: 'string' }, function(data) {
+    if (networkError) return callback(networkError);
+    XML.parse(data, function(err, obj) {
+      if (err) return callback(err);
+      callback(null, obj['Envelope']['Body']);
+    });
+  });
+
   if (options.benchmark) console.time('soap request: ' + uri);
 
-  superagent
-    .post(uri)
+  getlet(uri)
+    .method('POST')
     .send(xml)
     .set(headers(action, xml.length))
-    .buffer(true)
-    .end(function(err, res) {
-      if (err) return callback(err);
-      XML.parse(res.text, function(err, obj) {
-        if (err) return callback(err);
-        callback(null, obj['Envelope']['Body']);
-      });
+    .pipe(out)
+    .on('error', function(err) {
+      networkError = err;
     });
 };
 
