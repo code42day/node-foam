@@ -1,4 +1,10 @@
 
+1.0.3 / 2017-12-25
+==================
+
+ * replace superagent with getlet
+ * fix npm test target
+
 1.0.2 / 2017-10-26
 ==================
 
